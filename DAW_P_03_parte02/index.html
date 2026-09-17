@@ -229,3 +229,95 @@
       font-family: 'Fraunces', serif;
       font-weight: 600;
     }
+        /* ---- Cards ---- */
+    .product-card{
+      background-color: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .product-art{
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(135deg, var(--surface-2), #100e0b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-disc{
+      width: 55%;
+      aspect-ratio: 1/1;
+      border-radius: 9999px;
+      background: repeating-radial-gradient(circle at center, #35291b 0 2px, transparent 2px 6px), var(--bg);
+      position: relative;
+    }
+    .product-disc::after{
+      content:"";
+      position:absolute; inset:0; margin:auto;
+      width: 30%; height: 30%;
+      background: var(--accent);
+      border-radius: 9999px;
+    }
+      <!-- =========================================================
+       PASO 4 — GRID DE TARJETAS
+       Bootstrap: container, row, col-md-4
+       Tailwind: rounded-xl, shadow-lg, hover:scale-105, transition-transform
+       Restricción: sin @media manuales, solo breakpoints nativos
+  ========================================================== -->
+  <section id="productos" class="py-5" style="background-color: var(--bg);">
+    <div class="container py-4">
+      <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3">
+        <div>
+          <h2 class="font-display fs-1 mb-2">Catálogo destacado</h2>
+          <p style="color: var(--text-muted);">Tres piezas para empezar (o ampliar) tu colección.</p>
+        </div>
+        <a href="#" class="btn btn-outline-accent">Ver todo el catálogo</a>
+      </div>
+
+      <div class="row g-4">
+
+        <div class="col-md-4">
+          <div class="card product-card h-100 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+            <div class="product-art"><div class="product-disc"></div></div>
+            <div class="card-body">
+              <span class="badge mb-2" style="background-color: var(--surface-2); color: var(--accent);">Vinilo</span>
+              <h3 class="h5 font-display">Sonidos del Valle — Edición LP</h3>
+              <p class="small mb-3" style="color: var(--text-muted);">180g, prensado audiófilo, funda con arte original.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="price-tag fs-5">S/ 89.00</span>
+                <button class="btn btn-accent btn-sm">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card product-card h-100 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+            <div class="product-art"><div class="product-disc"></div></div>
+            <div class="card-body">
+              <span class="badge mb-2" style="background-color: var(--surface-2); color: var(--accent);">Tornamesa</span>
+              <h3 class="h5 font-display">Tornamesa Andina TT-100</h3>
+              <p class="small mb-3" style="color: var(--text-muted);">Tracción por correa, brazo balanceado, salida phono.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="price-tag fs-5">S/ 749.00</span>
+                <button class="btn btn-accent btn-sm">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card product-card h-100 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+            <div class="product-art"><div class="product-disc"></div></div>
+            <div class="card-body">
+              <span class="badge mb-2" style="background-color: var(--surface-2); color: var(--accent);">Audio</span>
+              <h3 class="h5 font-display">Audífonos de estudio Sereno</h3>
+              <p class="small mb-3" style="color: var(--text-muted);">Circumaurales, cable desmontable, respuesta plana.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="price-tag fs-5">S/ 320.00</span>
+                <button class="btn btn-accent btn-sm">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
