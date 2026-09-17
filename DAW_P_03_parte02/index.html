@@ -57,3 +57,93 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+    /* ---- Navbar ---- */
+    .navbar-vinilo{
+      background-color: rgba(20, 18, 15, 0.85);
+      border-bottom: 1px solid var(--line);
+    }
+    .navbar-vinilo .nav-link{
+      color: var(--text-muted) !important;
+    }
+    .navbar-vinilo .nav-link:hover,
+    .navbar-vinilo .nav-link.active{
+      color: var(--accent) !important;
+    }
+    .navbar-brand-vinilo{
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: var(--text) !important;
+    }
+    .navbar-brand-vinilo span{ color: var(--accent); }
+      <!-- =========================================================
+       PASO 2 — NAVBAR RESPONSIVO
+       Bootstrap: navbar-expand-lg, collapse, toggler, dropdown
+       Tailwind: shadow-lg, py-3, backdrop-blur
+  ========================================================== -->
+  <nav class="navbar navbar-expand-lg navbar-vinilo sticky-top py-3 shadow-lg backdrop-blur">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-vinilo" href="#">Vinilo<span>Andino</span></a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navMain" aria-controls="navMain"
+              aria-expanded="false" aria-label="Abrir menú de navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav mx-auto gap-lg-2">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              Catálogo
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="#productos">Vinilos</a></li>
+              <li><a class="dropdown-item" href="#productos">Tornamesas</a></li>
+              <li><a class="dropdown-item" href="#productos">Audífonos</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#productos">Accesorios</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#productos">Ofertas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reserva">Reservar pedido</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Nosotros</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-3">
+          <a href="#" class="position-relative nav-link">
+            Carrito
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                  style="background-color: var(--accent); color:#14120f;">
+              3
+            </span>
+          </a>
+          <a href="#reserva" class="btn btn-accent btn-sm px-3">Ir a checkout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+      /* ---- Botones propios ---- */
+    .btn-accent{
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #14120f;
+      font-weight: 600;
+    }
+    .btn-accent:hover{
+      background-color: var(--accent-deep);
+      border-color: var(--accent-deep);
+      color: #14120f;
+    }
+    .btn-outline-accent{
+      border-color: var(--line);
+      color: var(--text);
+    }
+    .btn-outline-accent:hover{
+      border-color: var(--accent);
+      color: var(--accent);
+      background: transparent;
+    }
