@@ -3,199 +3,987 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0d0a1f">
 
-  <!-- ===== SEO ===== -->
-  <title>Vinilo Andino | Tienda de vinilos, tornamesas y audio</title>
-  <meta name="description" content="Vinilo Andino: catálogo de discos de vinilo, tornamesas y audífonos de estudio. Envíos a todo el Perú, reserva tu pedido en línea.">
-  <meta name="keywords" content="vinilos, tornamesas, audífonos, tienda de discos, e-commerce Perú, Huancayo, audio analógico">
+  <!-- =========================================================
+       PASO 1 — SETUP INICIAL, SEO Y CDNs
+  ========================================================== -->
+
+  <title>Vinilo Andino — Discos, tornamesas y audio análogo en Perú</title>
+  <meta name="description" content="Vinilo Andino: catálogo curado de discos de vinilo, tornamesas restauradas y audífonos de estudio. Envíos a todo el Perú, reserva tu pedido en línea.">
+  <meta name="keywords" content="vinilos, tornamesas, audífonos, tienda de discos, e-commerce Perú, Huancayo, audio analógico, LP, hi-fi">
   <meta name="author" content="Grupo Desarrollo de Aplicaciones Web - UNCP">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Vinilo Andino | Tienda de vinilos y audio">
-  <meta property="og:description" content="Catálogo, carrito y checkout para amantes del vinilo.">
+  <link rel="canonical" href="https://viniloandino.pe/">
+
   <meta property="og:type" content="website">
+  <meta property="og:title" content="Vinilo Andino — Discos, tornamesas y audio análogo">
+  <meta property="og:description" content="Catálogo curado, carrito y checkout para amantes del vinilo. Envíos a todo el Perú.">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:site_name" content="Vinilo Andino">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vinilo Andino — Discos, tornamesas y audio análogo">
+  <meta name="twitter:description" content="Catálogo curado para amantes del vinilo.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicStore",
+    "name": "Vinilo Andino",
+    "description": "Tienda de discos de vinilo, tornamesas y audio de estudio en Perú.",
+    "url": "https://viniloandino.pe/",
+    "priceRange": "S/ 50 - S/ 2000",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Huancayo",
+      "addressRegion": "Junín",
+      "addressCountry": "PE"
+    }
+  }
+  </script>
 
   <!-- ===== CDNs oficiales ===== -->
-  <!-- Bootstrap 5.3.3 (CSS) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Tailwind CSS (Play CDN, solo para desarrollo) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Tipografías -->
+  <!-- ===== Tipografías ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ===== Design tokens (paleta propia del proyecto) ===== */
+    /* ============================================================
+       DESIGN SYSTEM — Paleta VIBRANTE
+    ============================================================ */
     :root{
-      --bg: #14120f;
-      --surface: #1f1b16;
-      --surface-2: #262019;
-      --text: #f2ede4;
-      --text-muted: #c9c0b3;
-      --accent: #e0a458;   /* ámbar - color de acento principal */
-      --accent-deep: #b9793a;
-      --line: #3a332a;
+      /* Fondos índigo profundo */
+      --bg:            #0d0a1f;
+      --bg-2:          #15102e;
+      --surface:       #1a1535;
+      --surface-2:     #251e48;
+      --surface-3:     #322a5a;
+
+      /* Texto */
+      --text:          #f8f6ff;
+      --text-muted:    #b1a7d1;
+      --text-dim:      #756c95;
+
+      /* Líneas */
+      --line:          #2a2250;
+      --line-soft:     #1f1a3d;
+
+      /* Acentos VIBRANTES */
+      --amber:         #ffb347;
+      --orange:        #ff7a45;
+      --coral:         #ff5e5b;
+      --pink:          #ff4d9d;
+      --magenta:       #e935c1;
+      --purple:        #a855f7;
+      --violet:        #7c3aed;
+      --blue:          #4dabf7;
+      --cyan:          #22d3ee;
+      --teal:          #14b8a6;
+      --mint:          #4ade80;
+      --yellow:        #fde047;
+
+      /* Gradientes */
+      --grad-sunset:   linear-gradient(135deg, #ff7a45 0%, #ff4d9d 50%, #a855f7 100%);
+      --grad-ocean:    linear-gradient(135deg, #4dabf7 0%, #22d3ee 50%, #4ade80 100%);
+      --grad-fire:     linear-gradient(135deg, #fde047 0%, #ff7a45 50%, #ff4d9d 100%);
+      --grad-candy:    linear-gradient(135deg, #ff4d9d 0%, #a855f7 100%);
+      --grad-violet:   linear-gradient(135deg, #a855f7 0%, #4dabf7 100%);
     }
+
+    *,
+    *::before,
+    *::after{ box-sizing: border-box; }
+
+    html{ scroll-behavior: smooth; }
 
     body{
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
     }
-    h1, h2, h3, .font-display{
-      font-family: 'Fraunces', serif;
-    }
-    a{ color: inherit; }
 
-    /* ---- Botones propios ---- */
-    .btn-accent{
-      background-color: var(--accent);
-      border-color: var(--accent);
-      color: #14120f;
+    /* Orbes de color difuminados — dan "vida" al fondo */
+    body::before,
+    body::after{
+      content: "";
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: .35;
+    }
+    body::before{
+      width: 520px; height: 520px;
+      background: var(--purple);
+      top: -180px; left: -160px;
+    }
+    body::after{
+      width: 480px; height: 480px;
+      background: var(--pink);
+      top: 40%; right: -180px;
+    }
+
+    h1, h2, h3, h4, .font-display{
+      font-family: 'Fraunces', Georgia, serif;
+      letter-spacing: -0.02em;
+    }
+    .font-tech{ font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.01em; }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ color: var(--amber); }
+
+    ::selection{ background: var(--pink); color: var(--text); }
+
+    ::-webkit-scrollbar{ width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track{ background: var(--bg); }
+    ::-webkit-scrollbar-thumb{ background: var(--surface-3); border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover{ background: var(--purple); }
+
+    :focus-visible{
+      outline: 2px solid var(--pink);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ============================================================
+       COMPONENTES PROPIOS
+    ============================================================ */
+
+    /* ---- Botones ---- */
+    .btn{
       font-weight: 600;
+      letter-spacing: 0.01em;
+      border-radius: 999px;
+      transition: transform .2s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+      border: 0;
     }
-    .btn-accent:hover{
-      background-color: var(--accent-deep);
-      border-color: var(--accent-deep);
-      color: #14120f;
+    .btn-gradient{
+      background: var(--grad-sunset);
+      background-size: 200% 200%;
+      color: #fff;
+      box-shadow: 0 10px 30px -10px rgba(255,77,157,.6);
+      position: relative;
     }
-    .btn-outline-accent{
-      border-color: var(--line);
+    .btn-gradient:hover{
+      color: #fff;
+      transform: translateY(-2px);
+      background-position: 100% 100%;
+      box-shadow: 0 16px 40px -12px rgba(168,85,247,.7);
+    }
+    .btn-candy{
+      background: var(--grad-candy);
+      color: #fff;
+      box-shadow: 0 10px 30px -12px rgba(168,85,247,.6);
+    }
+    .btn-candy:hover{
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px -14px rgba(255,77,157,.7);
+    }
+    .btn-outline-glow{
+      border: 1px solid var(--surface-3);
+      background: rgba(255,255,255,.02);
       color: var(--text);
+      backdrop-filter: blur(8px);
     }
-    .btn-outline-accent:hover{
-      border-color: var(--accent);
-      color: var(--accent);
+    .btn-outline-glow:hover{
+      color: var(--amber);
+      border-color: var(--amber);
+      background: rgba(255,179,71,.06);
+      transform: translateY(-2px);
+    }
+    .btn-ghost{
+      border: 1px solid transparent;
+      color: var(--text-muted);
       background: transparent;
     }
+    .btn-ghost:hover{
+      color: var(--amber);
+      border-color: var(--surface-3);
+    }
 
-    /* ---- Navbar ---- */
+    /* ---- Eyebrow (etiqueta de sección) ---- */
+    .eyebrow{
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      padding: .4rem .85rem;
+      border-radius: 999px;
+      border: 1px solid var(--surface-3);
+      background: rgba(255,255,255,.02);
+      color: var(--text-muted);
+    }
+    .eyebrow::before{
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 999px;
+      background: var(--pink);
+      box-shadow: 0 0 8px var(--pink);
+    }
+    .eyebrow--ocean::before{ background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+    .eyebrow--fire::before{ background: var(--orange); box-shadow: 0 0 8px var(--orange); }
+    .eyebrow--violet::before{ background: var(--purple); box-shadow: 0 0 8px var(--purple); }
+
+    /* ---- Texto con gradiente ---- */
+    .text-gradient{
+      background: var(--grad-sunset);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-gradient--ocean{
+      background: var(--grad-ocean);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ---- Divisor ---- */
+    .hairline{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--purple), transparent);
+    }
+
+    /* ============================================================
+       PASO 2 — NAVBAR
+    ============================================================ */
     .navbar-vinilo{
-      background-color: rgba(20, 18, 15, 0.85);
+      background: rgba(13, 10, 31, 0.72);
       border-bottom: 1px solid var(--line);
+      backdrop-filter: saturate(160%) blur(16px);
+      -webkit-backdrop-filter: saturate(160%) blur(16px);
     }
     .navbar-vinilo .nav-link{
       color: var(--text-muted) !important;
+      font-size: .93rem;
+      font-weight: 500;
+      padding: .4rem .85rem !important;
+      border-radius: 8px;
+      transition: color .2s ease, background .2s ease;
     }
     .navbar-vinilo .nav-link:hover,
     .navbar-vinilo .nav-link.active{
-      color: var(--accent) !important;
+      color: var(--text) !important;
+      background: rgba(168,85,247,.12);
     }
     .navbar-brand-vinilo{
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-      font-size: 1.4rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
       color: var(--text) !important;
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
     }
-    .navbar-brand-vinilo span{ color: var(--accent); }
+    .navbar-brand-vinilo span{
+      background: var(--grad-sunset);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+    .navbar-brand-vinilo::before{
+      content: "";
+      width: 14px; height: 14px;
+      border-radius: 999px;
+      background: var(--grad-sunset);
+      box-shadow: 0 0 16px rgba(255,77,157,.7);
+    }
+    .navbar-toggler{
+      border: 1px solid var(--surface-3);
+      border-radius: 10px;
+      padding: .35rem .55rem;
+    }
+    .navbar-toggler:focus{ box-shadow: none; }
+    .navbar-toggler-icon{
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23ff4d9d' stroke-linecap='round' stroke-width='2' d='M4 8h22M4 15h22M4 22h22'/%3E%3C/svg%3E");
+    }
+    .dropdown-menu-dark{
+      --bs-dropdown-bg: var(--surface);
+      --bs-dropdown-border-color: var(--surface-3);
+      --bs-dropdown-link-color: var(--text-muted);
+      --bs-dropdown-link-hover-color: var(--text);
+      --bs-dropdown-link-hover-bg: var(--surface-2);
+      --bs-dropdown-link-active-bg: var(--surface-2);
+      --bs-dropdown-link-active-color: var(--amber);
+      border-radius: 14px;
+      padding: .4rem;
+      margin-top: .6rem;
+      box-shadow: 0 20px 50px -20px rgba(0,0,0,.9);
+    }
+    .dropdown-item{
+      border-radius: 8px;
+      font-size: .9rem;
+      padding: .55rem .85rem;
+    }
+    .badge-notif{
+      background: var(--grad-fire);
+      color: #1a1208;
+      font-weight: 700;
+      font-size: .68rem;
+    }
 
-    /* ---- Hero ---- */
+    /* ============================================================
+       PASO 3 — HERO
+    ============================================================ */
     .hero-section{
-      border-bottom: 1px solid var(--line);
-    }
-    .hero-disc{
-      aspect-ratio: 1 / 1;
-      border-radius: 9999px;
-      background:
-        repeating-radial-gradient(circle at center, var(--surface-2) 0 3px, transparent 3px 7px),
-        radial-gradient(circle at center, #0c0a08 0 22%, var(--surface) 23% 100%);
       position: relative;
-      box-shadow: 0 30px 60px -20px rgba(0,0,0,.6);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(168,85,247,.22) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255,77,157,.18) 0%, transparent 50%),
+        radial-gradient(circle at 60% 100%, rgba(255,122,69,.16) 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
     }
-    .hero-disc::after{
+    .hero-section::before{
       content: "";
       position: absolute;
-      inset: 0; margin: auto;
-      width: 14%; height: 14%;
-      background: var(--accent);
-      border-radius: 9999px;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse at center, #000 40%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 40%, transparent 80%);
+      pointer-events: none;
     }
-    .hero-disc::before{
+    .hero-title{
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      font-weight: 500;
+    }
+    .hero-title em{
+      font-style: italic;
+      font-weight: 400;
+      background: var(--grad-fire);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-meta{
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      padding-top: 2rem;
+      margin-top: 2.5rem;
+      border-top: 1px solid var(--line);
+    }
+    .hero-meta__value{
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.85rem;
+      line-height: 1;
+      display: block;
+      background: var(--grad-fire);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-meta__label{
+      font-size: .72rem;
+      color: var(--text-dim);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-top: .5rem;
+      display: block;
+      font-weight: 500;
+    }
+
+    /* ---- Hero visual: foto + vinilo flotante ---- */
+    .hero-stage{
+      position: relative;
+      aspect-ratio: 1;
+      max-width: 500px;
+      margin-inline: auto;
+    }
+    .hero-photo{
+      position: absolute;
+      inset: 0;
+      border-radius: 32px;
+      overflow: hidden;
+      transform: rotate(-4deg);
+      box-shadow:
+        0 40px 80px -25px rgba(0,0,0,.9),
+        0 0 0 1px rgba(255,255,255,.06);
+      transition: transform .6s cubic-bezier(.2,.7,.2,1);
+    }
+    .hero-photo:hover{ transform: rotate(0deg) scale(1.02); }
+    .hero-photo img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-photo::after{
       content: "";
       position: absolute;
-      inset: 0; margin: auto;
-      width: 4%; height: 4%;
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 40%, rgba(13,10,31,.7) 100%),
+        linear-gradient(135deg, rgba(168,85,247,.25), rgba(255,77,157,.15));
+      pointer-events: none;
+    }
+    .hero-vinyl{
+      position: absolute;
+      right: -12%;
+      bottom: -8%;
+      width: 55%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        repeating-radial-gradient(circle at center,
+          #0a0715 0 2px,
+          #1a1535 2px 3px);
+      box-shadow:
+        0 30px 60px -20px rgba(0,0,0,.9),
+        inset 0 0 40px rgba(0,0,0,.7),
+        0 0 0 1px rgba(255,255,255,.06);
+      animation: spin-slow 22s linear infinite;
+      z-index: 3;
+    }
+    .hero-vinyl::before{
+      content: "";
+      position: absolute;
+      inset: 32%;
+      border-radius: 50%;
+      background: var(--grad-sunset);
+      box-shadow: inset 0 0 30px rgba(0,0,0,.4);
+    }
+    .hero-vinyl::after{
+      content: "";
+      position: absolute;
+      inset: 48%;
+      border-radius: 50%;
       background: var(--bg);
-      border-radius: 9999px;
+    }
+    .hero-chip{
+      position: absolute;
+      z-index: 4;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem 1rem;
+      border-radius: 999px;
+      background: rgba(26,21,53,.85);
+      border: 1px solid var(--surface-3);
+      backdrop-filter: blur(12px);
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--text);
+      box-shadow: 0 12px 30px -10px rgba(0,0,0,.8);
+      animation: float 5s ease-in-out infinite;
+    }
+    .hero-chip .dot{
+      width: 8px; height: 8px; border-radius: 999px;
+    }
+    .hero-chip--tl{ top: 8%; left: -6%; }
+    .hero-chip--tl .dot{ background: var(--mint); box-shadow: 0 0 10px var(--mint); }
+    .hero-chip--br{ bottom: 12%; left: -4%; animation-delay: 1.5s; }
+    .hero-chip--br .dot{ background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+
+    @keyframes spin-slow{ to { transform: rotate(360deg); } }
+    @keyframes float{
+      0%, 100%{ transform: translateY(0); }
+      50%{ transform: translateY(-8px); }
+    }
+
+    /* ============================================================
+       TICKER — cinta de géneros
+    ============================================================ */
+    .ticker{
+      overflow: hidden;
+      border-block: 1px solid var(--line);
+      background: linear-gradient(90deg, var(--surface) 0%, var(--surface-2) 50%, var(--surface) 100%);
+      padding: 1.15rem 0;
+      white-space: nowrap;
+      position: relative;
+    }
+    .ticker::before,
+    .ticker::after{
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 100px;
       z-index: 2;
+      pointer-events: none;
     }
-
-    /* ---- Precio / tipografía display ---- */
-    .price-tag{
-      color: var(--accent);
-      font-family: 'Fraunces', serif;
+    .ticker::before{ left: 0; background: linear-gradient(90deg, var(--surface), transparent); }
+    .ticker::after{ right: 0; background: linear-gradient(-90deg, var(--surface), transparent); }
+    .ticker__track{
+      display: inline-flex;
+      gap: 3rem;
+      padding-right: 3rem;
+      animation: ticker 45s linear infinite;
+      will-change: transform;
+    }
+    .ticker__item{
+      display: inline-flex;
+      align-items: center;
+      gap: .85rem;
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      letter-spacing: -0.01em;
+    }
+    .ticker__item::after{
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 999px;
+      background: var(--grad-fire);
+      display: inline-block;
+    }
+    @keyframes ticker{
+      to { transform: translateX(-50%); }
     }
 
-    /* ---- Cards ---- */
-    .product-card{
-      background-color: var(--surface);
-      border: 1px solid var(--line);
+    /* ============================================================
+       PRODUCTO DESTACADO
+    ============================================================ */
+    .featured{
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+      border: 1px solid var(--surface-3);
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
     }
-    .product-art{
-      aspect-ratio: 4 / 3;
-      background: linear-gradient(135deg, var(--surface-2), #100e0b);
+    .featured::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(168,85,247,.2) 0%, transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(255,77,157,.15) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .featured__art{
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .product-disc{
-      width: 55%;
-      aspect-ratio: 1/1;
-      border-radius: 9999px;
-      background: repeating-radial-gradient(circle at center, #35291b 0 2px, transparent 2px 6px), var(--bg);
+    .featured__art img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .featured__art::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(168,85,247,.35), rgba(255,77,157,.2), transparent 70%);
+    }
+    .featured__tag{
+      position: absolute;
+      top: 1.5rem; left: 1.5rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #1a1208;
+      background: var(--grad-fire);
+      padding: .45rem .85rem;
+      border-radius: 999px;
+      z-index: 2;
+      box-shadow: 0 8px 20px -8px rgba(255,122,69,.6);
+    }
+
+    /* ============================================================
+       PASO 4 — GRID DE TARJETAS
+    ============================================================ */
+    .product-card{
+      background: var(--surface);
+      border: 1px solid var(--surface-3);
+      transition: border-color .3s ease, box-shadow .3s ease, transform .35s cubic-bezier(.2,.7,.2,1);
       position: relative;
+      overflow: hidden;
     }
-    .product-disc::after{
-      content:"";
-      position:absolute; inset:0; margin:auto;
-      width: 30%; height: 30%;
-      background: var(--accent);
-      border-radius: 9999px;
+    .product-card:hover{
+      border-color: rgba(168,85,247,.4);
+      box-shadow: 0 40px 80px -30px rgba(168,85,247,.45);
     }
+    .product-art{
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+    .product-art img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .5s ease;
+      filter: saturate(1.05) brightness(.95);
+    }
+    .product-card:hover .product-art img{
+      transform: scale(1.1);
+      filter: saturate(1.2) brightness(1);
+    }
+    .product-art::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(13,10,31,.85) 100%);
+      pointer-events: none;
+    }
+    .product-badge{
+      position: absolute;
+      top: 1rem; left: 1rem;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .4rem .75rem;
+      border-radius: 999px;
+      color: #fff;
+      backdrop-filter: blur(10px);
+    }
+    .product-badge--purple{ background: rgba(168,85,247,.9); box-shadow: 0 6px 20px -6px rgba(168,85,247,.7); }
+    .product-badge--pink{ background: rgba(255,77,157,.9); box-shadow: 0 6px 20px -6px rgba(255,77,157,.7); }
+    .product-badge--cyan{ background: rgba(34,211,238,.9); color:#04141a; box-shadow: 0 6px 20px -6px rgba(34,211,238,.7); }
+    .price-tag{
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--grad-fire);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+    .rating{
+      display: inline-flex;
+      gap: .15rem;
+      color: var(--amber);
+      font-size: .85rem;
+    }
+    .rating span[aria-hidden="true"]{ opacity: .25; }
+    .rating span.on{ opacity: 1; }
 
-    /* ---- Formulario ---- */
+    /* ============================================================
+       TESTIMONIOS
+    ============================================================ */
+    .testimonial{
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+      border: 1px solid var(--surface-3);
+      border-radius: 22px;
+      padding: 2rem;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .3s ease, transform .3s ease;
+    }
+    .testimonial::before{
+      content: "";
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: .35;
+      pointer-events: none;
+    }
+    .testimonial--1::before{ background: var(--pink); }
+    .testimonial--2::before{ background: var(--cyan); }
+    .testimonial--3::before{ background: var(--amber); }
+    .testimonial:hover{
+      border-color: rgba(255,77,157,.35);
+      transform: translateY(-4px);
+    }
+    .testimonial__quote{
+      font-family: 'Fraunces', serif;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text);
+      position: relative;
+      z-index: 1;
+    }
+    .avatar{
+      width: 46px; height: 46px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      color: #fff;
+      box-shadow: 0 8px 20px -6px rgba(0,0,0,.6);
+    }
+    .avatar--1{ background: var(--grad-candy); }
+    .avatar--2{ background: var(--grad-ocean); }
+    .avatar--3{ background: var(--grad-fire); }
+
+    /* ============================================================
+       PASO 5 — FORMULARIO
+    ============================================================ */
     .checkout-panel{
-      background-color: var(--surface);
-      border: 1px solid var(--line);
+      background: linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
+      border: 1px solid var(--surface-3);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
     }
-    .form-control, .form-select{
-      background-color: var(--bg);
-      border-color: var(--line);
+    .checkout-panel::before{
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 2px;
+      background: var(--grad-sunset);
+      opacity: .9;
+    }
+    .form-label{
+      color: var(--text-muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+    .form-control,
+    .form-select{
+      background: rgba(13,10,31,.6);
+      border: 1px solid var(--surface-3);
       color: var(--text);
+      border-radius: 12px;
+      padding: .75rem 1rem;
+      font-size: .95rem;
+      transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
     }
-    .form-control:focus, .form-select:focus{
-      background-color: var(--bg);
+    .form-control::placeholder{ color: var(--text-dim); }
+    .form-control:focus,
+    .form-select:focus{
+      background: rgba(13,10,31,.85);
       color: var(--text);
-      border-color: var(--accent);
-      box-shadow: 0 0 0 0.2rem rgba(224, 164, 88, .25);
+      border-color: var(--pink);
+      box-shadow: 0 0 0 4px rgba(255,77,157,.18);
     }
-    .form-label{ color: var(--text-muted); }
+    .form-select option{ background: var(--surface); color: var(--text); }
+    .form-check-input{
+      background-color: rgba(13,10,31,.6);
+      border-color: var(--surface-3);
+      width: 1.15em; height: 1.15em;
+      margin-top: .15em;
+    }
+    .form-check-input:checked{
+      background-color: var(--pink);
+      border-color: var(--pink);
+    }
+    .form-check-input:focus{
+      border-color: var(--pink);
+      box-shadow: 0 0 0 4px rgba(255,77,157,.18);
+    }
+    .form-check-label{ font-size: .92rem; color: var(--text); }
+    .form-text{ color: var(--text-dim) !important; font-size: .8rem; }
+    .invalid-feedback{ color: var(--coral); font-size: .82rem; }
+    .valid-feedback{ color: var(--mint); font-size: .82rem; }
+    fieldset{
+      border: 1px solid var(--surface-3);
+      border-radius: 14px;
+      padding: 1rem 1.25rem 1.25rem;
+      margin: 0;
+    }
+    fieldset legend{
+      float: none;
+      width: auto;
+      padding: 0 .6rem;
+      margin: 0 0 0 -0.6rem;
+    }
 
+    /* ============================================================
+       FAQ — Acordeón
+    ============================================================ */
+    .accordion{
+      --bs-accordion-bg: transparent;
+      --bs-accordion-border-color: var(--surface-3);
+      --bs-accordion-btn-color: var(--text);
+      --bs-accordion-btn-bg: var(--surface);
+      --bs-accordion-active-color: var(--amber);
+      --bs-accordion-active-bg: var(--surface-2);
+      --bs-accordion-btn-focus-box-shadow: 0 0 0 4px rgba(255,77,157,.18);
+      --bs-accordion-color: var(--text-muted);
+    }
+    .accordion-item{
+      border: 1px solid var(--surface-3);
+      border-radius: 16px !important;
+      margin-bottom: .85rem;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .accordion-button{
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 1.2rem 1.4rem;
+    }
+    .accordion-button:not(.collapsed){
+      background: var(--surface-2);
+      color: var(--amber);
+    }
+    .accordion-button::after{
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ff4d9d'%3E%3Cpath d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z'/%3E%3C/svg%3E");
+    }
+    .accordion-body{ color: var(--text-muted); line-height: 1.7; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
     footer{
       border-top: 1px solid var(--line);
       color: var(--text-muted);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      position: relative;
+    }
+    .footer-link{
+      display: block;
+      padding: .35rem 0;
+      color: var(--text-muted);
+      font-size: .92rem;
+      transition: color .2s ease, transform .2s ease;
+    }
+    .footer-link:hover{ color: var(--amber); transform: translateX(3px); }
+
+    /* ============================================================
+       OFFCANVAS / CARRITO
+    ============================================================ */
+    .offcanvas{
+      background: var(--surface);
+      color: var(--text);
+      border-left: 1px solid var(--surface-3) !important;
+    }
+    .offcanvas-header{
+      border-bottom: 1px solid var(--line);
+      padding: 1.5rem;
+    }
+    .offcanvas-title{
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+    }
+    .btn-close{ filter: invert(1) brightness(1.5); }
+    .cart-item{
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .cart-item__thumb{
+      width: 72px; height: 72px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 1px solid var(--surface-3);
+    }
+    .cart-item__thumb img{
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ============================================================
+       BACK TO TOP
+    ============================================================ */
+    .back-to-top{
+      position: fixed;
+      bottom: 1.75rem;
+      right: 1.75rem;
+      width: 52px; height: 52px;
+      border-radius: 999px;
+      background: var(--grad-sunset);
+      border: 0;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1050;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity .25s ease, transform .25s ease;
+      box-shadow: 0 15px 40px -10px rgba(255,77,157,.6);
+    }
+    .back-to-top.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .back-to-top:hover{ transform: translateY(-3px); }
+
+    /* ============================================================
+       REVEAL ON SCROLL
+    ============================================================ */
+    .reveal{
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+      will-change: opacity, transform;
+    }
+    .reveal.is-visible{
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after{
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Skip-link para accesibilidad (Lighthouse) -->
-  <a href="#productos"
-     class="visually-hidden-focusable position-absolute top-0 start-0 p-2"
-     style="background: var(--accent); color:#14120f; z-index: 2000;">
+  <!-- =========================================================
+       PASO 6 — Skip-link accesible
+  ========================================================== -->
+  <a href="#contenido"
+     class="visually-hidden-focusable position-absolute top-0 start-0 p-3"
+     style="background: var(--grad-sunset); color:#fff; z-index: 2000; border-radius: 0 0 12px 0; font-weight: 600;">
     Saltar al contenido principal
   </a>
 
   <!-- =========================================================
-       PASO 2 — NAVBAR RESPONSIVO
-       Bootstrap: navbar-expand-lg, collapse, toggler, dropdown
-       Tailwind: shadow-lg, py-3, backdrop-blur
+       PASO 2 — NAVBAR
   ========================================================== -->
-  <nav class="navbar navbar-expand-lg navbar-vinilo sticky-top py-3 shadow-lg backdrop-blur">
+  <nav class="navbar navbar-expand-lg navbar-vinilo sticky-top py-3 shadow-lg backdrop-blur" aria-label="Navegación principal">
     <div class="container">
-      <a class="navbar-brand navbar-brand-vinilo" href="#">Vinilo<span>Andino</span></a>
+      <a class="navbar-brand navbar-brand-vinilo" href="#" aria-label="Vinilo Andino — inicio">
+        Vinilo<span>Andino</span>
+      </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
               data-bs-target="#navMain" aria-controls="navMain"
@@ -214,274 +1002,731 @@
               <li><a class="dropdown-item" href="#productos">Vinilos</a></li>
               <li><a class="dropdown-item" href="#productos">Tornamesas</a></li>
               <li><a class="dropdown-item" href="#productos">Audífonos</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li><hr class="dropdown-divider" style="border-color: var(--surface-3);"></li>
               <li><a class="dropdown-item" href="#productos">Accesorios</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link" href="#productos">Ofertas</a></li>
           <li class="nav-item"><a class="nav-link" href="#reserva">Reservar pedido</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">Preguntas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
         </ul>
 
         <div class="d-flex align-items-center gap-3">
-          <a href="#" class="position-relative nav-link">
-            Carrito
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
-                  style="background-color: var(--accent); color:#14120f;">
-              3
-            </span>
-          </a>
-          <a href="#reserva" class="btn btn-accent btn-sm px-3">Ir a checkout</a>
+          <button type="button"
+                  class="btn btn-ghost position-relative d-inline-flex align-items-center gap-2 px-3 py-2"
+                  data-bs-toggle="offcanvas" data-bs-target="#cartDrawer"
+                  aria-controls="cartDrawer" aria-label="Abrir carrito de compras">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+              <path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span class="d-none d-sm-inline">Carrito</span>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-notif">3</span>
+          </button>
+          <a href="#reserva" class="btn btn-gradient btn-sm px-3 py-2">Ir a checkout</a>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- =========================================================
-       PASO 3 — HERO SECTION
-       Bootstrap: display-3, lead, d-flex, gap-3
-       Tailwind: text-balance, max-w-3xl, bg-gradient-to-r
-  ========================================================== -->
-  <header class="hero-section py-5 bg-gradient-to-r from-[#14120f] via-[#1a1712] to-[#14120f]">
-    <div class="container py-5">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-6">
-          <span class="badge rounded-pill mb-3"
-                style="background-color: var(--surface-2); color: var(--accent); border:1px solid var(--line);">
-            Nueva colección andina
-          </span>
-          <h1 class="display-3 fw-semibold text-balance mb-3">
-            Discos que suenan como fueron grabados.
-          </h1>
-          <p class="lead max-w-3xl" style="color: var(--text-muted);">
-            Vinilos originales, tornamesas restauradas y audífonos de estudio,
-            seleccionados para quienes prefieren escuchar la música completa, sin comprimir.
-          </p>
-          <div class="d-flex flex-wrap gap-3 mt-4">
-            <a href="#productos" class="btn btn-accent btn-lg px-4">Ver catálogo</a>
-            <a href="#reserva" class="btn btn-outline-accent btn-lg px-4">Reservar pedido</a>
-          </div>
-          <div class="d-flex gap-4 mt-5 flex-wrap">
-            <div>
-              <p class="price-tag mb-0 fs-4">+120</p>
-              <p class="small" style="color: var(--text-muted);">títulos en catálogo</p>
-            </div>
-            <div>
-              <p class="price-tag mb-0 fs-4">24</p>
-              <p class="small" style="color: var(--text-muted);">regiones con envío</p>
-            </div>
-            <div>
-              <p class="price-tag mb-0 fs-4">4.8/5</p>
-              <p class="small" style="color: var(--text-muted);">valoración de clientes</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="hero-disc mx-auto" style="max-width: 380px;"></div>
-        </div>
-      </div>
-    </div>
-  </header>
+  <main id="contenido">
 
-  <!-- =========================================================
-       PASO 4 — GRID DE TARJETAS
-       Bootstrap: container, row, col-md-4
-       Tailwind: rounded-xl, shadow-lg, hover:scale-105, transition-transform
-       Restricción: sin @media manuales, solo breakpoints nativos
-  ========================================================== -->
-  <section id="productos" class="py-5" style="background-color: var(--bg);">
-    <div class="container py-4">
-      <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3">
-        <div>
-          <h2 class="font-display fs-1 mb-2">Catálogo destacado</h2>
-          <p style="color: var(--text-muted);">Tres piezas para empezar (o ampliar) tu colección.</p>
-        </div>
-        <a href="#" class="btn btn-outline-accent">Ver todo el catálogo</a>
-      </div>
+    <!-- =========================================================
+         PASO 3 — HERO
+    ========================================================== -->
+    <header class="hero-section py-5 bg-gradient-to-r from-[#0d0a1f] via-[#15102e] to-[#0d0a1f]">
+      <div class="container py-5">
+        <div class="row align-items-center g-5">
 
-      <div class="row g-4">
+          <div class="col-lg-6">
+            <span class="eyebrow eyebrow--violet mb-4">Nueva colección · 2026</span>
 
-        <div class="col-md-4">
-          <div class="card product-card h-100 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-            <div class="product-art"><div class="product-disc"></div></div>
-            <div class="card-body">
-              <span class="badge mb-2" style="background-color: var(--surface-2); color: var(--accent);">Vinilo</span>
-              <h3 class="h5 font-display">Sonidos del Valle — Edición LP</h3>
-              <p class="small mb-3" style="color: var(--text-muted);">180g, prensado audiófilo, funda con arte original.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="price-tag fs-5">S/ 89.00</span>
-                <button class="btn btn-accent btn-sm">Agregar</button>
-              </div>
-            </div>
-          </div>
-        </div>
+            <h1 class="display-3 hero-title text-balance mb-4">
+              Discos que suenan <em>como fueron grabados</em>.
+            </h1>
 
-        <div class="col-md-4">
-          <div class="card product-card h-100 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-            <div class="product-art"><div class="product-disc"></div></div>
-            <div class="card-body">
-              <span class="badge mb-2" style="background-color: var(--surface-2); color: var(--accent);">Tornamesa</span>
-              <h3 class="h5 font-display">Tornamesa Andina TT-100</h3>
-              <p class="small mb-3" style="color: var(--text-muted);">Tracción por correa, brazo balanceado, salida phono.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="price-tag fs-5">S/ 749.00</span>
-                <button class="btn btn-accent btn-sm">Agregar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card product-card h-100 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-            <div class="product-art"><div class="product-disc"></div></div>
-            <div class="card-body">
-              <span class="badge mb-2" style="background-color: var(--surface-2); color: var(--accent);">Audio</span>
-              <h3 class="h5 font-display">Audífonos de estudio Sereno</h3>
-              <p class="small mb-3" style="color: var(--text-muted);">Circumaurales, cable desmontable, respuesta plana.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="price-tag fs-5">S/ 320.00</span>
-                <button class="btn btn-accent btn-sm">Agregar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       PASO 5 — FORMULARIO CON VALIDACIÓN UI Y ACCESIBILIDAD
-       Bootstrap: form-control, is-invalid, valid-feedback
-       Tailwind: clase peer (validación avanzada solo con CSS)
-       Accesibilidad: labels for/id, aria-describedby, contraste >= 4.5:1
-  ========================================================== -->
-  <section id="reserva" class="py-5" style="background-color: var(--surface);">
-    <div class="container py-4">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="checkout-panel rounded-xl shadow-lg p-4 p-md-5">
-            <h2 class="font-display fs-2 mb-2">Reserva tu pedido</h2>
-            <p class="mb-4" style="color: var(--text-muted);">
-              Completa el formulario y confirmamos disponibilidad antes del envío.
+            <p class="lead max-w-3xl mb-4" style="color: var(--text-muted); font-weight: 300;">
+              Vinilos originales, tornamesas restauradas y audífonos de estudio,
+              seleccionados para quienes prefieren escuchar la música completa,
+              sin comprimir.
             </p>
 
-            <form class="row g-3 needs-validation" novalidate id="checkoutForm">
+            <div class="d-flex flex-wrap gap-3 mt-4">
+              <a href="#productos" class="btn btn-gradient btn-lg px-4 d-inline-flex align-items-center gap-2">
+                Ver catálogo
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <a href="#reserva" class="btn btn-outline-glow btn-lg px-4">Reservar pedido</a>
+            </div>
 
-              <!-- Nombre: estado válido (para captura de evidencia) -->
-              <div class="col-md-6">
-                <label for="nombre" class="form-label">Nombre completo</label>
-                <input type="text" class="form-control is-valid" id="nombre" required
-                       aria-describedby="nombreValid">
-                <div id="nombreValid" class="valid-feedback">Se ve bien.</div>
+            <div class="hero-meta">
+              <div>
+                <span class="hero-meta__value">+120</span>
+                <span class="hero-meta__label">títulos en catálogo</span>
               </div>
+              <div>
+                <span class="hero-meta__value">24</span>
+                <span class="hero-meta__label">regiones con envío</span>
+              </div>
+              <div>
+                <span class="hero-meta__value">4.8/5</span>
+                <span class="hero-meta__label">valoración de clientes</span>
+              </div>
+            </div>
+          </div>
 
-              <!-- Email: estado inválido (para captura de evidencia) -->
-              <div class="col-md-6">
-                <label for="email" class="form-label">Correo electrónico</label>
-                <input type="email" class="form-control is-invalid" id="email" required
-                       aria-describedby="emailError">
-                <div id="emailError" class="invalid-feedback">
-                  Ingresa un correo válido, por ejemplo nombre@correo.com.
+          <div class="col-lg-6">
+            <div class="hero-stage">
+              <div class="hero-photo">
+                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80"
+                     alt="Tornamesa reproduciendo un vinilo en un ambiente cálido"
+                     loading="eager" referrerpolicy="no-referrer">
+              </div>
+              <div class="hero-vinyl" aria-hidden="true"></div>
+
+              <span class="hero-chip hero-chip--tl">
+                <span class="dot" aria-hidden="true"></span>
+                Prensado audiófilo 180g
+              </span>
+              <span class="hero-chip hero-chip--br">
+                <span class="dot" aria-hidden="true"></span>
+                Edición limitada
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== Ticker de géneros ===== -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span class="ticker__item">Vinilo andino</span>
+        <span class="ticker__item">Jazz</span>
+        <span class="ticker__item">Rock clásico</span>
+        <span class="ticker__item">Cumbia peruana</span>
+        <span class="ticker__item">Electrónica</span>
+        <span class="ticker__item">Soul</span>
+        <span class="ticker__item">Indie</span>
+        <span class="ticker__item">Clásica</span>
+        <span class="ticker__item">Boleros</span>
+        <span class="ticker__item">Afrobeat</span>
+        <span class="ticker__item">Vinilo andino</span>
+        <span class="ticker__item">Jazz</span>
+        <span class="ticker__item">Rock clásico</span>
+        <span class="ticker__item">Cumbia peruana</span>
+        <span class="ticker__item">Electrónica</span>
+        <span class="ticker__item">Soul</span>
+        <span class="ticker__item">Indie</span>
+        <span class="ticker__item">Clásica</span>
+        <span class="ticker__item">Boleros</span>
+        <span class="ticker__item">Afrobeat</span>
+      </div>
+    </div>
+
+    <!-- ===== Producto destacado ===== -->
+    <section class="py-5" id="nosotros">
+      <div class="container py-5">
+        <div class="reveal">
+          <span class="eyebrow eyebrow--fire mb-4">Pieza del mes</span>
+          <div class="featured row g-0 align-items-stretch mt-3">
+            <div class="col-lg-5">
+              <div class="featured__art h-100">
+                <span class="featured__tag">Edición limitada</span>
+                <img src="https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?auto=format&fit=crop&w=900&q=80"
+                     alt="Vinilo sobre una mesa de mezclas con luz cálida"
+                     loading="lazy" referrerpolicy="no-referrer">
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="p-4 p-md-5 h-100 d-flex flex-column justify-content-center position-relative" style="z-index: 1;">
+                <span class="product-badge product-badge--purple mb-3" style="position: static; display: inline-flex; align-self: flex-start;">Vinilo · Edición LP</span>
+                <h2 class="font-display mb-3" style="font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.1;">
+                  Sonidos del Valle — <em class="text-gradient" style="font-style: italic;">Edición LP</em>
+                </h2>
+                <p class="mb-4" style="color: var(--text-muted); line-height: 1.7;">
+                  Una grabación en cinta de 1978, recuperada y remasterizada a 45 RPM
+                  en vinilo de 180 gramos. Incluye libreto bilingüe con notas de la
+                  sesión original y arte de portada impreso en serigrafía.
+                </p>
+                <ul class="list-unstyled mb-4" style="color: var(--text-muted); line-height: 2;">
+                  <li class="d-flex gap-3">
+                    <span style="color: var(--pink);" aria-hidden="true">◆</span>
+                    Prensado audiófilo · 180 g
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span style="color: var(--amber);" aria-hidden="true">◆</span>
+                    Masterizado a 45 RPM desde cintas originales
+                  </li>
+                  <li class="d-flex gap-3">
+                    <span style="color: var(--cyan);" aria-hidden="true">◆</span>
+                    Funda tipográfica con arte serigrafiado
+                  </li>
+                </ul>
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                  <span class="price-tag" style="font-size: 2rem;">S/ 189.00</span>
+                  <div class="d-flex gap-2">
+                    <a href="#reserva" class="btn btn-gradient px-4">Reservar</a>
+                    <button type="button" class="btn btn-outline-glow px-4"
+                            data-bs-toggle="offcanvas" data-bs-target="#cartDrawer"
+                            aria-controls="cartDrawer">
+                      Agregar al carrito
+                    </button>
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-              <!-- Teléfono: validación con peer de Tailwind -->
-              <div class="col-md-6">
-                <label for="telefono" class="form-label">Teléfono (validación con peer de Tailwind)</label>
-                <div class="relative">
-                  <input type="tel" id="telefono" name="telefono"
-                         class="peer form-control"
-                         pattern="[0-9]{9}" required
-                         placeholder="9XXXXXXXX"
-                         aria-describedby="telefonoError">
-                  <p id="telefonoError"
-                     class="invisible peer-[&:not(:placeholder-shown):invalid]:visible text-sm mt-1"
-                     style="color:#ff9b9b;">
-                    Ingresa 9 dígitos numéricos.
+    <!-- =========================================================
+         PASO 4 — GRID DE TARJETAS
+    ========================================================== -->
+    <section id="productos" class="py-5">
+      <div class="container py-4">
+
+        <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3 reveal">
+          <div>
+            <span class="eyebrow eyebrow--ocean mb-3">Catálogo</span>
+            <h2 class="font-display mb-2" style="font-size: clamp(1.9rem, 3.5vw, 2.6rem);">
+              Tres piezas para empezar tu colección
+            </h2>
+            <p style="color: var(--text-muted); max-width: 560px;">
+              Curaduría quincenal de vinilos, equipos y accesorios.
+              Cada pieza pasa por inspección física antes de publicarse.
+            </p>
+          </div>
+          <a href="#" class="btn btn-outline-glow">Ver todo el catálogo</a>
+        </div>
+
+        <div class="row g-4">
+
+          <div class="col-md-4 reveal">
+            <article class="card product-card h-100 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 border-0">
+              <div class="product-art">
+                <span class="product-badge product-badge--purple">Vinilo</span>
+                <img src="https://images.unsplash.com/photo-1539375665275-f9de415ef9ac?auto=format&fit=crop&w=800&q=80"
+                     alt="Disco de vinilo negro sobre fondo claro con surcos visibles"
+                     loading="lazy" referrerpolicy="no-referrer">
+              </div>
+              <div class="card-body p-4" style="background: var(--surface);">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <span class="font-tech" style="font-size: .72rem; letter-spacing: .15em; color: var(--purple); font-weight: 700;">EDICIÓN LP</span>
+                  <span class="rating" aria-label="Valoración 4.8 sobre 5">
+                    <span class="on" aria-hidden="true">★</span>
+                    <span class="on" aria-hidden="true">★</span>
+                    <span class="on" aria-hidden="true">★</span>
+                    <span class="on" aria-hidden="true">★</span>
+                    <span aria-hidden="true">★</span>
+                  </span>
+                </div>
+                <h3 class="h5 font-display mb-2">Sonidos del Valle — Edición LP</h3>
+                <p class="small mb-4" style="color: var(--text-muted); line-height: 1.6;">
+                  180g, prensado audiófilo, funda con arte original.
+                </p>
+                <div class="d-flex justify-content-between align-items-center pt-3" style="border-top: 1px solid var(--surface-3);">
+                  <span class="price-tag fs-5">S/ 89.00</span>
+                  <button type="button" class="btn btn-candy btn-sm px-3">Agregar</button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-4 reveal">
+            <article class="card product-card h-100 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 border-0">
+              <div class="product-art">
+                <span class="product-badge product-badge--pink">Tornamesa</span>
+                <img src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=800&q=80"
+                     alt="Tornamesa vintage con brazo y aguja sobre un vinilo"
+                     loading="lazy" referrerpolicy="no-referrer">
+              </div>
+              <div class="card-body p-4" style="background: var(--surface);">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <span class="font-tech" style="font-size: .72rem; letter-spacing: .15em; color: var(--pink); font-weight: 700;">HI-FI</span>
+                  <span class="rating" aria-label="Valoración 4.9 sobre 5">
+                    <span class="on" aria-hidden="true">★</span>
+                    <span class="on" aria-hidden="true">★</span>
+                    <span class="on" aria-hidden="true">★</span>
+                    <span class="on" aria-hidden="true">★</span>
+                    <span class="on" aria-hidden="true">★</span>
+                  </span>
+                </div>
+                <h3 class="h5 font-display mb-2">Tornamesa Andina TT-100</h3>
+                <p class="small mb-4" style="color: var(--text-muted); line-height: 1.6;">
+                  Tracción por correa, brazo balanceado, salida phono.
+                </p>
+                <div class="d-flex justify-content-between align-items-center pt-3" style="border-top: 1px solid var(--surface-3);">
+                  <span class="price-tag fs-5">S/ 749.00</span>
+                  <button type="button" class="btn btn-candy btn-sm px-3">Agregar</button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-4 reveal">
+            <article class="card product-card h-100 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 border-0">
+              <div class="product-art">
+                <span class="product-badge product-badge--cyan">Audio</span>
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"
+                     alt="Audífonos de estudio profesionales sobre fondo oscuro"
+                     loading="lazy" referrerpolicy="no-referrer">
+              </div>
+              <div class="card-body p-4" style="background: var(--surface);">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <span class="font-tech" style="font-size: .72rem; letter-spacing: .15em; color: var(--cyan); font-weight: 700;">STUDIO</span>
+                  <span class="rating" aria-label="Valoración 4.7 sobre 5">
+                    <span class="on" aria-hidden="true">★</span>
+                    <span class="on" aria-hidden="true">★</span>
+                    <span class="on" aria-hidden="true">★</span>
+                    <span class="on" aria-hidden="true">★</span>
+                    <span aria-hidden="true">★</span>
+                  </span>
+                </div>
+                <h3 class="h5 font-display mb-2">Audífonos de estudio Sereno</h3>
+                <p class="small mb-4" style="color: var(--text-muted); line-height: 1.6;">
+                  Circumaurales, cable desmontable, respuesta plana.
+                </p>
+                <div class="d-flex justify-content-between align-items-center pt-3" style="border-top: 1px solid var(--surface-3);">
+                  <span class="price-tag fs-5">S/ 320.00</span>
+                  <button type="button" class="btn btn-candy btn-sm px-3">Agregar</button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Testimonios ===== -->
+    <section class="py-5" style="background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 50%, var(--bg) 100%);">
+      <div class="container py-5">
+        <div class="text-center mb-5 reveal">
+          <span class="eyebrow eyebrow--violet mb-3">Voces de la comunidad</span>
+          <h2 class="font-display" style="font-size: clamp(1.8rem, 3vw, 2.4rem);">
+            Lo que dicen quienes ya escuchan distinto
+          </h2>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4 reveal">
+            <figure class="testimonial testimonial--1 m-0">
+              <div class="rating mb-3" aria-label="5 estrellas">
+                <span class="on" aria-hidden="true">★</span><span class="on" aria-hidden="true">★</span>
+                <span class="on" aria-hidden="true">★</span><span class="on" aria-hidden="true">★</span>
+                <span class="on" aria-hidden="true">★</span>
+              </div>
+              <blockquote class="testimonial__quote mb-4">
+                “Pedí un LP pensando que llegaría con la funda golpeada, como suele pasar.
+                Llegó impecable, con un sobre rígido y una nota escrita a mano.”
+              </blockquote>
+              <figcaption class="d-flex align-items-center gap-3">
+                <span class="avatar avatar--1" aria-hidden="true">MC</span>
+                <div>
+                  <div style="font-weight: 500;">María Cárdenas</div>
+                  <div class="small" style="color: var(--text-dim);">Coleccionista · Lima</div>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="col-md-4 reveal">
+            <figure class="testimonial testimonial--2 m-0">
+              <div class="rating mb-3" aria-label="5 estrellas">
+                <span class="on" aria-hidden="true">★</span><span class="on" aria-hidden="true">★</span>
+                <span class="on" aria-hidden="true">★</span><span class="on" aria-hidden="true">★</span>
+                <span class="on" aria-hidden="true">★</span>
+              </div>
+              <blockquote class="testimonial__quote mb-4">
+                “Compré la tornamesa TT-100 y sonó perfecta desde el primer día.
+                El servicio post-venta me ayudó a calibrar la aguja.”
+              </blockquote>
+              <figcaption class="d-flex align-items-center gap-3">
+                <span class="avatar avatar--2" aria-hidden="true">JR</span>
+                <div>
+                  <div style="font-weight: 500;">Jorge Ramírez</div>
+                  <div class="small" style="color: var(--text-dim);">Productor musical · Arequipa</div>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="col-md-4 reveal">
+            <figure class="testimonial testimonial--3 m-0">
+              <div class="rating mb-3" aria-label="4 estrellas">
+                <span class="on" aria-hidden="true">★</span><span class="on" aria-hidden="true">★</span>
+                <span class="on" aria-hidden="true">★</span><span class="on" aria-hidden="true">★</span>
+                <span aria-hidden="true">★</span>
+              </div>
+              <blockquote class="testimonial__quote mb-4">
+                “La curaduría es lo mejor: encuentras cosas que no aparecen
+                en las tiendas grandes. Vale la pena revisar cada quincena.”
+              </blockquote>
+              <figcaption class="d-flex align-items-center gap-3">
+                <span class="avatar avatar--3" aria-hidden="true">AL</span>
+                <div>
+                  <div style="font-weight: 500;">Ana Loayza</div>
+                  <div class="small" style="color: var(--text-dim);">DJ · Huancayo</div>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PASO 5 — FORMULARIO
+    ========================================================== -->
+    <section id="reserva" class="py-5">
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-9 col-xl-8">
+
+            <div class="text-center mb-5 reveal">
+              <span class="eyebrow eyebrow--fire mb-3">Checkout</span>
+              <h2 class="font-display mb-2" style="font-size: clamp(1.8rem, 3.5vw, 2.4rem);">
+                Reserva tu pedido
+              </h2>
+              <p style="color: var(--text-muted); max-width: 520px; margin-inline: auto;">
+                Completa el formulario y confirmamos disponibilidad antes del envío.
+                Respondemos en menos de 24 horas hábiles.
+              </p>
+            </div>
+
+            <div class="checkout-panel rounded-xl shadow-lg p-4 p-md-5 reveal">
+              <form class="row g-3 needs-validation" novalidate id="checkoutForm">
+
+                <div class="col-md-6">
+                  <label for="nombre" class="form-label">Nombre completo</label>
+                  <input type="text" class="form-control is-valid" id="nombre" name="nombre"
+                         autocomplete="name" required aria-describedby="nombreValid">
+                  <div id="nombreValid" class="valid-feedback">Se ve bien.</div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Correo electrónico</label>
+                  <input type="email" class="form-control is-invalid" id="email" name="email"
+                         autocomplete="email" required aria-describedby="emailError">
+                  <div id="emailError" class="invalid-feedback">
+                    Ingresa un correo válido, por ejemplo nombre@correo.com.
+                  </div>
+                </div>
+
+                <!-- Teléfono con peer de Tailwind -->
+                <div class="col-md-6">
+                  <label for="telefono" class="form-label">Teléfono</label>
+                  <div class="relative">
+                    <input type="tel" id="telefono" name="telefono"
+                           class="peer form-control"
+                           pattern="[0-9]{9}" required
+                           autocomplete="tel"
+                           placeholder="9XXXXXXXX"
+                           aria-describedby="telefonoError telefonoHelp">
+                    <p id="telefonoError"
+                       class="invisible peer-[&:not(:placeholder-shown):invalid]:visible text-sm mt-1 mb-0"
+                       style="color: var(--coral);">
+                      Ingresa exactamente 9 dígitos numéricos.
+                    </p>
+                    <p id="telefonoHelp" class="form-text mb-0">
+                      Validación hecha solo con CSS usando la clase <code>peer</code> de Tailwind.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="producto" class="form-label">Producto</label>
+                  <select class="form-select" id="producto" name="producto" required>
+                    <option selected disabled value="">Selecciona un producto</option>
+                    <option>Sonidos del Valle — Edición LP</option>
+                    <option>Tornamesa Andina TT-100</option>
+                    <option>Audífonos de estudio Sereno</option>
+                  </select>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="cantidad" class="form-label">Cantidad</label>
+                  <input type="number" class="form-control" id="cantidad" name="cantidad"
+                         min="1" max="20" value="1" required aria-describedby="cantidadAyuda">
+                  <div id="cantidadAyuda" class="form-text">Mínimo 1 unidad, máximo 20.</div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="ciudad" class="form-label">Ciudad de envío</label>
+                  <input type="text" class="form-control" id="ciudad" name="ciudad"
+                         autocomplete="address-level2" required>
+                  <div class="invalid-feedback">Ingresa tu ciudad.</div>
+                </div>
+
+                <div class="col-12">
+                  <label for="mensaje" class="form-label">Mensaje (opcional)</label>
+                  <textarea class="form-control" id="mensaje" name="mensaje" rows="3"
+                            placeholder="Indícanos si necesitas empaque de regalo o alguna dedicatoria."
+                            aria-describedby="mensajeAyuda"></textarea>
+                  <div id="mensajeAyuda" class="form-text">
+                    Tu mensaje se imprime en una tarjeta y se adjunta al paquete.
+                  </div>
+                </div>
+
+                <fieldset class="col-12">
+                  <legend class="form-label">Entrega</legend>
+                  <div class="d-flex flex-wrap gap-4 mt-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="entrega" id="envio" value="envio" checked>
+                      <label class="form-check-label" for="envio">Envío a domicilio</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="entrega" id="recojo" value="recojo">
+                      <label class="form-check-label" for="recojo">Recojo en tienda</label>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="terminos" name="terminos" required
+                           aria-describedby="terminosError">
+                    <label class="form-check-label" for="terminos">
+                      Acepto los términos de reserva y la política de envío
+                    </label>
+                    <div id="terminosError" class="invalid-feedback">
+                      Debes aceptar los términos para continuar.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 mt-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+                  <p class="small mb-0" style="color: var(--text-dim);">
+                    Tus datos solo se usan para gestionar esta reserva.
                   </p>
+                  <button class="btn btn-gradient btn-lg px-4" type="submit">Confirmar reserva</button>
                 </div>
-              </div>
 
-              <div class="col-md-6">
-                <label for="producto" class="form-label">Producto</label>
-                <select class="form-select" id="producto" required>
-                  <option selected disabled value="">Selecciona un producto</option>
-                  <option>Sonidos del Valle — Edición LP</option>
-                  <option>Tornamesa Andina TT-100</option>
-                  <option>Audífonos de estudio Sereno</option>
-                </select>
-              </div>
+              </form>
+            </div>
 
-              <div class="col-md-6">
-                <label for="cantidad" class="form-label">Cantidad</label>
-                <input type="number" class="form-control" id="cantidad" min="1" value="1" required
-                       aria-describedby="cantidadAyuda">
-                <div id="cantidadAyuda" class="form-text" style="color: var(--text-muted);">
-                  Mínimo 1 unidad.
-                </div>
-              </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-              <div class="col-12">
-                <label for="mensaje" class="form-label">Mensaje (opcional)</label>
-                <textarea class="form-control" id="mensaje" rows="3"
-                          aria-describedby="mensajeAyuda"></textarea>
-                <div id="mensajeAyuda" class="form-text" style="color: var(--text-muted);">
-                  Indícanos si necesitas empaque de regalo o alguna dedicatoria.
-                </div>
-              </div>
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="py-5">
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-lg-4 reveal">
+            <span class="eyebrow eyebrow--ocean mb-3">Preguntas frecuentes</span>
+            <h2 class="font-display mb-3" style="font-size: clamp(1.8rem, 3vw, 2.3rem);">
+              Antes de reservar
+            </h2>
+            <p style="color: var(--text-muted);">
+              Si tu duda no está aquí, escríbenos en el formulario de reserva
+              y la respondemos junto con la confirmación.
+            </p>
+          </div>
 
-              <fieldset class="col-12">
-                <legend class="form-label fs-6">Entrega</legend>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="entrega" id="envio" value="envio" checked>
-                  <label class="form-check-label" for="envio">Envío a domicilio</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="entrega" id="recojo" value="recojo">
-                  <label class="form-check-label" for="recojo">Recojo en tienda</label>
-                </div>
-              </fieldset>
+          <div class="col-lg-8 reveal">
+            <div class="accordion" id="faqAccordion">
 
-              <div class="col-12">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="terminos" required
-                         aria-describedby="terminosError">
-                  <label class="form-check-label" for="terminos">
-                    Acepto los términos de reserva y la política de envío
-                  </label>
-                  <div id="terminosError" class="invalid-feedback">
-                    Debes aceptar los términos para continuar.
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="faqH1">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#faqC1" aria-expanded="true" aria-controls="faqC1">
+                    ¿Los vinilos son originales o reediciones?
+                  </button>
+                </h3>
+                <div id="faqC1" class="accordion-collapse collapse show"
+                     aria-labelledby="faqH1" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Trabajamos ambas categorías y lo indicamos claramente en cada
+                    ficha: “Original”, “Reedición oficial” o “Prensado local”.
+                    Nunca vendemos copias no autorizadas.
                   </div>
                 </div>
               </div>
 
-              <div class="col-12 mt-4">
-                <button class="btn btn-accent btn-lg px-4" type="submit">Confirmar reserva</button>
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="faqH2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#faqC2" aria-expanded="false" aria-controls="faqC2">
+                    ¿Cuánto demora el envío a provincias?
+                  </button>
+                </h3>
+                <div id="faqC2" class="accordion-collapse collapse"
+                     aria-labelledby="faqH2" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Entre 3 y 7 días hábiles según la región. Todos los pedidos
+                    viajan en sobre rígido con esquineros, y se envía número de
+                    seguimiento por correo.
+                  </div>
+                </div>
               </div>
-            </form>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="faqH3">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#faqC3" aria-expanded="false" aria-controls="faqC3">
+                    ¿Puedo escuchar el disco antes de comprarlo?
+                  </button>
+                </h3>
+                <div id="faqC3" class="accordion-collapse collapse"
+                     aria-labelledby="faqH3" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Sí. En la tienda física de Huancayo tenemos una tornamesa de
+                    demostración y una selección de títulos disponibles para
+                    escuchar antes de decidir.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="faqH4">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#faqC4" aria-expanded="false" aria-controls="faqC4">
+                    ¿Qué garantía tienen los equipos?
+                  </button>
+                </h3>
+                <div id="faqC4" class="accordion-collapse collapse"
+                     aria-labelledby="faqH4" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Tornamesas y audífonos incluyen 12 meses de garantía contra
+                    defectos de fábrica. Las unidades restauradas llevan
+                    certificado de calibración firmado.
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="py-4" style="background-color: var(--bg);">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
-      <p class="mb-0 small">&copy; 2026 Vinilo Andino — Proyecto académico, Desarrollo de Aplicaciones Web (ISO93A).</p>
-      <p class="mb-0 small">UNCP — Facultad de Ingeniería de Sistemas</p>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="pt-5 pb-4">
+    <div class="container position-relative" style="z-index: 1;">
+      <div class="row g-5 pb-5">
+        <div class="col-lg-4">
+          <a class="navbar-brand-vinilo d-inline-flex mb-3" href="#" aria-label="Vinilo Andino — inicio">
+            Vinilo<span>Andino</span>
+          </a>
+          <p style="max-width: 320px; line-height: 1.7;">
+            Curaduría independiente de vinilos, tornamesas y audio de estudio.
+            Desde Huancayo, para todo el Perú.
+          </p>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h3 class="h6 font-tech mb-3" style="color: var(--text); font-weight: 700;">Tienda</h3>
+          <a class="footer-link" href="#productos">Vinilos</a>
+          <a class="footer-link" href="#productos">Tornamesas</a>
+          <a class="footer-link" href="#productos">Audífonos</a>
+          <a class="footer-link" href="#productos">Accesorios</a>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h3 class="h6 font-tech mb-3" style="color: var(--text); font-weight: 700;">Ayuda</h3>
+          <a class="footer-link" href="#faq">Preguntas frecuentes</a>
+          <a class="footer-link" href="#reserva">Reservar pedido</a>
+          <a class="footer-link" href="#reserva">Envíos y devoluciones</a>
+          <a class="footer-link" href="#reserva">Contacto</a>
+        </div>
+
+        <div class="col-lg-4">
+          <h3 class="h6 font-tech mb-3" style="color: var(--text); font-weight: 700;">Recibe la curaduría quincenal</h3>
+          <p class="small mb-3">Un correo cada 15 días con nuevos ingresos y notas de escucha.</p>
+          <form class="d-flex gap-2" onsubmit="event.preventDefault();">
+            <label for="newsEmail" class="visually-hidden">Correo electrónico para el boletín</label>
+            <input type="email" id="newsEmail" class="form-control" placeholder="tu@correo.com" required>
+            <button class="btn btn-candy px-3" type="submit">Suscribirme</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="hairline mb-4"></div>
+
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 small">
+        <p class="mb-0">&copy; 2026 Vinilo Andino — Proyecto académico, Desarrollo de Aplicaciones Web (ISO93A).</p>
+        <p class="mb-0">UNCP — Facultad de Ingeniería de Sistemas</p>
+      </div>
     </div>
   </footer>
 
-  <!-- ===== Bootstrap JS (bundle incluye Popper) ===== -->
+  <!-- ===== Offcanvas: Carrito ===== -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel" style="max-width: 420px;">
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title h5" id="cartDrawerLabel">Tu carrito</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar carrito"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div class="cart-item">
+        <div class="cart-item__thumb">
+          <img src="https://images.unsplash.com/photo-1539375665275-f9de415ef9ac?auto=format&fit=crop&w=200&q=80"
+               alt="Vinilo Sonidos del Valle" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="flex-grow-1">
+          <div style="font-weight: 500;">Sonidos del Valle — Edición LP</div>
+          <div class="small" style="color: var(--text-dim);">Vinilo · 180g · 1 unidad</div>
+          <div class="price-tag mt-2">S/ 89.00</div>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="cart-item__thumb">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=200&q=80"
+               alt="Audífonos de estudio Sereno" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="flex-grow-1">
+          <div style="font-weight: 500;">Audífonos de estudio Sereno</div>
+          <div class="small" style="color: var(--text-dim);">Audio · 1 unidad</div>
+          <div class="price-tag mt-2">S/ 320.00</div>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-4" style="border-top: 1px solid var(--surface-3);">
+        <div class="d-flex justify-content-between mb-2">
+          <span style="color: var(--text-muted);">Subtotal</span>
+          <span class="price-tag">S/ 409.00</span>
+        </div>
+        <div class="d-flex justify-content-between mb-3">
+          <span style="color: var(--text-muted);">Envío estimado</span>
+          <span style="color: var(--text-muted);">Calculado al confirmar</span>
+        </div>
+        <a href="#reserva" class="btn btn-gradient w-100 py-3" data-bs-dismiss="offcanvas">
+          Ir a checkout
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Back to top ===== -->
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <!-- ===== Bootstrap JS ===== -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- ===== Validación de formulario en el cliente ===== -->
+  <!-- =========================================================
+       PASO 5 — Validación de formulario
+  ========================================================== -->
   <script>
     (function () {
       'use strict';
       const form = document.getElementById('checkoutForm');
+      if (!form) return;
       form.addEventListener('submit', function (event) {
         if (!form.checkValidity()) {
           event.preventDefault();
@@ -489,6 +1734,45 @@
         }
         form.classList.add('was-validated');
       }, false);
+    })();
+  </script>
+
+  <!-- =========================================================
+       PASO 6 — Micro-interacciones
+  ========================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // Reveal on scroll
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && revealEls.length) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+        revealEls.forEach((el) => io.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+      }
+
+      // Back to top
+      const btn = document.getElementById('backToTop');
+      if (btn) {
+        const onScroll = () => {
+          if (window.scrollY > 600) btn.classList.add('is-visible');
+          else btn.classList.remove('is-visible');
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        btn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
     })();
   </script>
 
