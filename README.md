@@ -47,6 +47,14 @@ E-commerce de vinilos, tornamesas y audio — **"Vinilo Andino"** (Opción 2: E-
 
 4. **Regla interna adoptada.**  
    Bootstrap se reservó para **estructura y componentes** (grillas, navbar, formularios). Tailwind se reservó para **utilidades visuales** (sombras, gradientes, transiciones, tipografía). Cuando un mismo elemento necesitaba ambos, primero se aplicaban las clases de Bootstrap y luego las de Tailwind, aprovechando la posición en la cascada.
+   5. **Conflicto de clase `.collapse` entre Tailwind y Bootstrap.**  
+   Tailwind Play CDN genera automáticamente la utilidad `.collapse { visibility: collapse; }` al detectarla en el HTML, lo que colisionaba con la clase `.collapse` de Bootstrap usada para el menú móvil del navbar.  
+   **Síntoma observado:** al pulsar el botón hamburguesa, el menú aparecía brevemente, se ocultaba y dejaba un "fantasma" visible al hacer scroll.  
+   **Solución:** se declaró un override explícito en el CSS propio:  
+   ```css
+   .collapse,
+   .collapsing,
+   .navbar-collapse { visibility: visible !important; }
 
 ## Accesibilidad
 - `lang="es"` en el `<html>`.
