@@ -4,7 +4,7 @@
 **Universidad Nacional del Centro del Perú — Facultad de Ingeniería de Sistemas**
 
 ## Integrante
-- [Tu nombre completo] — rama `Camargo`
+- ROBERTO CAMARGO ALVARADO — rama `Camargo`
 
 ## Tema elegido
 E-commerce de vinilos, tornamesas y audio — "Vinilo Andino".
