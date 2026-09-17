@@ -58,30 +58,7 @@
 </body>
 </html>
 
-    /* ---- Navbar ---- */
-    .navbar-vinilo{
-      background-color: rgba(20, 18, 15, 0.85);
-      border-bottom: 1px solid var(--line);
-    }
-    .navbar-vinilo .nav-link{
-      color: var(--text-muted) !important;
-    }
-    .navbar-vinilo .nav-link:hover,
-    .navbar-vinilo .nav-link.active{
-      color: var(--accent) !important;
-    }
-    .navbar-brand-vinilo{
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-      font-size: 1.4rem;
-      color: var(--text) !important;
-    }
-    .navbar-brand-vinilo span{ color: var(--accent); }
-      <!-- =========================================================
-       PASO 2 — NAVBAR RESPONSIVO
-       Bootstrap: navbar-expand-lg, collapse, toggler, dropdown
-       Tailwind: shadow-lg, py-3, backdrop-blur
-  ========================================================== -->
+    
   <nav class="navbar navbar-expand-lg navbar-vinilo sticky-top py-3 shadow-lg backdrop-blur">
     <div class="container">
       <a class="navbar-brand navbar-brand-vinilo" href="#">Vinilo<span>Andino</span></a>
@@ -224,43 +201,7 @@
       </div>
     </div>
   </header>
-      .price-tag{
-      color: var(--accent);
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-    }
-        /* ---- Cards ---- */
-    .product-card{
-      background-color: var(--surface);
-      border: 1px solid var(--line);
-    }
-    .product-art{
-      aspect-ratio: 4 / 3;
-      background: linear-gradient(135deg, var(--surface-2), #100e0b);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .product-disc{
-      width: 55%;
-      aspect-ratio: 1/1;
-      border-radius: 9999px;
-      background: repeating-radial-gradient(circle at center, #35291b 0 2px, transparent 2px 6px), var(--bg);
-      position: relative;
-    }
-    .product-disc::after{
-      content:"";
-      position:absolute; inset:0; margin:auto;
-      width: 30%; height: 30%;
-      background: var(--accent);
-      border-radius: 9999px;
-    }
-      <!-- =========================================================
-       PASO 4 — GRID DE TARJETAS
-       Bootstrap: container, row, col-md-4
-       Tailwind: rounded-xl, shadow-lg, hover:scale-105, transition-transform
-       Restricción: sin @media manuales, solo breakpoints nativos
-  ========================================================== -->
+ 
   <section id="productos" class="py-5" style="background-color: var(--bg);">
     <div class="container py-4">
       <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3">
@@ -321,3 +262,138 @@
       </div>
     </div>
   </section>
+        <!-- =========================================================
+       PASO 5 — FORMULARIO CON VALIDACIÓN UI Y ACCESIBILIDAD
+       Bootstrap: form-control, is-invalid, valid-feedback
+       Tailwind: clase peer (validación avanzada solo con CSS)
+       Accesibilidad: labels for/id, aria-describedby, contraste >= 4.5:1
+  ========================================================== -->
+  <section id="reserva" class="py-5" style="background-color: var(--surface);">
+    <div class="container py-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="checkout-panel rounded-xl shadow-lg p-4 p-md-5">
+            <h2 class="font-display fs-2 mb-2">Reserva tu pedido</h2>
+            <p class="mb-4" style="color: var(--text-muted);">
+              Completa el formulario y confirmamos disponibilidad antes del envío.
+            </p>
+
+            <form class="row g-3 needs-validation" novalidate id="checkoutForm">
+
+              <div class="col-md-6">
+                <label for="nombre" class="form-label">Nombre completo</label>
+                <input type="text" class="form-control is-valid" id="nombre" required
+                       aria-describedby="nombreValid">
+                <div id="nombreValid" class="valid-feedback">Se ve bien.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control is-invalid" id="email" required
+                       aria-describedby="emailError">
+                <div id="emailError" class="invalid-feedback">
+                  Ingresa un correo válido, por ejemplo nombre@correo.com.
+                </div>
+              </div>
+
+              <!-- Validación con peer de Tailwind -->
+              <div class="col-md-6">
+                <label for="telefono" class="form-label">Teléfono (validación con peer de Tailwind)</label>
+                <div class="relative">
+                  <input type="tel" id="telefono" name="telefono"
+                         class="peer form-control"
+                         pattern="[0-9]{9}" required
+                         placeholder="9XXXXXXXX"
+                         aria-describedby="telefonoError">
+                  <p id="telefonoError"
+                     class="invisible peer-invalid:visible text-sm mt-1"
+                     style="color:#ff9b9b;">
+                    Ingresa 9 dígitos numéricos.
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="producto" class="form-label">Producto</label>
+                <select class="form-select" id="producto" required>
+                  <option selected disabled value="">Selecciona un producto</option>
+                  <option>Sonidos del Valle — Edición LP</option>
+                  <option>Tornamesa Andina TT-100</option>
+                  <option>Audífonos de estudio Sereno</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="cantidad" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="cantidad" min="1" value="1" required
+                       aria-describedby="cantidadAyuda">
+                <div id="cantidadAyuda" class="form-text" style="color: var(--text-muted);">
+                  Mínimo 1 unidad.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="mensaje" class="form-label">Mensaje (opcional)</label>
+                <textarea class="form-control" id="mensaje" rows="3"
+                          aria-describedby="mensajeAyuda"></textarea>
+                <div id="mensajeAyuda" class="form-text" style="color: var(--text-muted);">
+                  Indícanos si necesitas empaque de regalo o alguna dedicatoria.
+                </div>
+              </div>
+
+              <fieldset class="col-12">
+                <legend class="form-label fs-6">Entrega</legend>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="entrega" id="envio" value="envio" checked>
+                  <label class="form-check-label" for="envio">Envío a domicilio</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="entrega" id="recojo" value="recojo">
+                  <label class="form-check-label" for="recojo">Recojo en tienda</label>
+                </div>
+              </fieldset>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="terminos" required
+                         aria-describedby="terminosError">
+                  <label class="form-check-label" for="terminos">
+                    Acepto los términos de reserva y la política de envío
+                  </label>
+                  <div id="terminosError" class="invalid-feedback">
+                    Debes aceptar los términos para continuar.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 mt-4">
+                <button class="btn btn-accent btn-lg px-4" type="submit">Confirmar reserva</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4" style="background-color: var(--bg);">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <p class="mb-0 small">&copy; 2026 Vinilo Andino — Proyecto académico, Desarrollo de Aplicaciones Web (ISO93A).</p>
+      <p class="mb-0 small">UNCP — Facultad de Ingeniería de Sistemas</p>
+    </div>
+  </footer>
+    <!-- ===== Validación de formulario en el cliente ===== -->
+  <script>
+    (function () {
+      'use strict';
+      const form = document.getElementById('checkoutForm');
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    })();
+  </script>
